@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--<androidx.constraintlayout.widget.ConstraintLayout -->
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -16,25 +15,79 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
+        android:gravity="center"
         android:text="@string/pixelpro_digital"
         android:textColor="@color/white"
         android:textSize="30sp"
         android:textStyle="bold"
-        android:gravity="center"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/UserNameTextView"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:text="@string/username"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:textColor="@color/white"
+        />
+
+    <EditText
+        android:id="@+id/UserNameEditTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="50dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        android:layout_gravity="center"
+        />
+
+    <TextView
+        android:id="@+id/PasswordTextView"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:text="@string/password"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:textColor="@color/white"
+        />
+
+    <EditText
+        android:id="@+id/PasswordEditTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="50dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        android:layout_gravity="center"
+        android:inputType="textPassword"
+        />
 
     <Button
         android:id="@+id/loginButtonView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="48dp"
-        android:layout_marginRight="48dp"
-        android:layout_marginTop="100dp"
-        android:text="PixelPro Login"
+        android:layout_marginLeft="48sp"
+        android:layout_marginTop="75sp"
+        android:layout_marginRight="48sp"
+        android:backgroundTint="@color/dark_blue"
+        android:drawableLeft="@drawable/sharp_density_small_24"
 
-         />
+        android:text="@string/pixelpro_login" />
+
 </LinearLayout>
 <!--</androidx.constraintlayout.widget.ConstraintLayout>-->
