@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">My Application</string>
     <string name="pixelpro_digital">PixelPro Digital</string>
-    <string name="username">Username:</string>
+    <string name="username">Email:</string>
     <string name="password">Password:</string>
     <string name="pixelpro_login">PixelPro Login</string>
+    <string name="home_page">Home Page</string>
 </resources>

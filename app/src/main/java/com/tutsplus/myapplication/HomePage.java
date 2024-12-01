@@ -31,11 +31,11 @@ public class HomePage extends AppCompatActivity {
         });
 
         if(getIntent().hasExtra("username")){
-            binding.TextViewUser.setText("Welcome " + getIntent().getStringExtra("username"));
+            binding.TextViewUser.setText(String.format("Welcome: %s", getIntent().getStringExtra("username")));
         }
 
         if(getIntent().hasExtra("password")){
-            binding.TextViewPassword.setText("Password: " + getIntent().getStringExtra("password"));
+            binding.TextViewPassword.setText(String.format("Password: %s", getIntent().getStringExtra("password")));
         }
 
 

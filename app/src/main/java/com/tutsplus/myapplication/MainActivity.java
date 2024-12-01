@@ -1,5 +1,6 @@
 package com.tutsplus.myapplication;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -50,16 +52,34 @@ public class MainActivity extends AppCompatActivity {
 
     public void login(View view) {
 
-        if (usernameEditText.getText().toString().isEmpty() || passwordEditText.getText().toString().isEmpty()) {
-            Toast.makeText(this, "Please enter a username and password", Toast.LENGTH_SHORT).show();
+        if (usernameEditText.getText().toString().isEmpty()) {
+            emptyUserDialogBox();
+            return;
+        }
+
+        if(!isValidEmail(usernameEditText.getText().toString())){
+            // if invalid email format, then return
+            inValidUserDialogBox();
+            return;
+
+        }
+        if(passwordEditText.getText().toString().isEmpty()){
+            emptyPasswordDialogBox();
             return;
         }
 
         if(!isValidPassword(passwordEditText.getText().toString())){
             // if invalid password, then return
-            Toast.makeText(this, "Please enter a valid password", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "Please enter a valid password\n" +
+//                    "Password must be at least 4 characters \n" +
+//                    "long and contain at least one uppercase \n" +
+//                    "letter, one digit, and one special character", Toast.LENGTH_LONG).show();
+            inValidPasswordDialogBox();
             return;
         }
+
+
+
 
 
         Intent intent = new Intent(this, HomePage.class);
@@ -99,6 +119,103 @@ public class MainActivity extends AppCompatActivity {
         return matcher.matches();
 
 
+    }
+
+    private void inValidPasswordDialogBox() {
+        // Create an AlertDialog builder
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        // Set the title and message of the dialog
+        builder.setTitle("Invalid Password");
+        builder.setMessage("Please enter a valid password\n" +
+                "Password must be at least 4 characters \n" +
+                "long and contain at least one uppercase \n" +
+                "letter, one digit, and one special character");
+        builder.setCancelable(false);
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        // Create and show the dialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void inValidUserDialogBox() {
+        // Create an AlertDialog builder
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        // Set the title and message of the dialog
+        builder.setTitle("Invalid Email");
+        builder.setMessage("Please enter a valid email address\n" +
+                "Example format: john.catron@example-pet-store.com");
+        builder.setCancelable(false);
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        // Create and show the dialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    public boolean isValidEmail(String email){
+//        String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+        return email != null && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
+    private void emptyPasswordDialogBox() {
+        // Create an AlertDialog builder
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        // Set the title and message of the dialog
+        builder.setTitle("Invalid Password - Empty");
+        builder.setMessage("Please enter a valid password\n" +
+                "Password must be at least 4 characters \n" +
+                "long and contain at least one uppercase \n" +
+                "letter, one digit, and one special character");
+        builder.setCancelable(false);
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        // Create and show the dialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void emptyUserDialogBox() {
+        // Create an AlertDialog builder
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        // Set the title and message of the dialog
+        builder.setTitle("Invalid Email - Empty");
+        builder.setMessage("Please enter a valid email address\n" +
+                "Example format: john.catron@example-pet-store.com");
+        builder.setCancelable(false);
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        // Create and show the dialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
 }
