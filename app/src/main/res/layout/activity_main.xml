@@ -48,6 +48,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         android:layout_gravity="center"
+        android:background="@drawable/rectangle_edit_text"
         />
 
     <TextView
@@ -75,6 +76,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView"
         android:layout_gravity="center"
         android:inputType="textPassword"
+        android:background="@drawable/rectangle_edit_text"
         />
 
     <Button

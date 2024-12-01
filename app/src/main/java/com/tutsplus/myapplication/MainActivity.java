@@ -15,6 +15,9 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.tutsplus.myapplication.databinding.ActivityMainBinding;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
@@ -52,6 +55,13 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
+        if(!isValidPassword(passwordEditText.getText().toString())){
+            // if invalid password, then return
+            Toast.makeText(this, "Please enter a valid password", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
         Intent intent = new Intent(this, HomePage.class);
         intent.putExtra("username", usernameEditText.getText().toString());
         intent.putExtra("password", passwordEditText.getText().toString());
@@ -66,4 +76,29 @@ public class MainActivity extends AppCompatActivity {
         passwordEditText.setText("");
 
     }
+
+    public boolean isValidPassword(String password) {
+
+        //  ^: Start of the string.
+        //  (?=.*[A-Z]): At least one uppercase letter.
+        //  (?=.*\\d): At least one digit.
+        //  (?=.*[@$!%*?&]): At least one special character.
+        //  [A-Za-z\\d@$!%*?&]: Allowed characters.
+        //  {4,}: Minimum length of 4 characters.
+        //  $: End of the string.
+
+        String regex = "^(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{4,}$";
+
+        // Compile the pattern
+        Pattern pattern = Pattern.compile(regex);
+
+        // Match the password with the pattern
+        Matcher matcher = pattern.matcher(password);
+
+        // Return true if the password matches the pattern, false otherwise
+        return matcher.matches();
+
+
+    }
+
 }
