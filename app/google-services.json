@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "227583268152",
+    "project_id": "firstfirebase-2d039",
+    "storage_bucket": "firstfirebase-2d039.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:227583268152:android:b959ca3e58533869241dcd",
+        "android_client_info": {
+          "package_name": "com.tutsplus.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNgEvjOPHaX4Ri9YOsT9lV_H5e0HyYumc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

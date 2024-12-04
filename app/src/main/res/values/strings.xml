@@ -5,4 +5,8 @@
     <string name="password">Password:</string>
     <string name="pixelpro_login">PixelPro Login</string>
     <string name="home_page">Home Page</string>
+    <string name="signup_with_email">SignUp with Email</string>
+    <string name="email">Email</string>
+    <string name="signup_page">SignUp Page</string>
+    <string name="register">Register</string>
 </resources>

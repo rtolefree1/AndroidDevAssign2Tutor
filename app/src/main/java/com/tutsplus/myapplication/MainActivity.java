@@ -15,6 +15,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.tutsplus.myapplication.databinding.ActivityMainBinding;
 
 import java.util.regex.Matcher;
@@ -24,8 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
     private static final String TAG = "MainActivity";
-    EditText usernameEditText;
-    EditText passwordEditText;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,32 +44,47 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        usernameEditText = findViewById(R.id.UserNameEditTextView);
-        passwordEditText = findViewById(R.id.PasswordEditTextView);
+//        usernameEditText = findViewById(R.id.UserNameEditTextView);
+//        passwordEditText = findViewById(R.id.PasswordEditTextView);
         binding.loginButtonView.setOnClickListener(this::login);
+//        mAuth = FirebaseAuth.getInstance();
+//
+//        mAuth.createUserWithEmailAndPassword(email, password)
+//                .addOnCompleteListener(this, task -> {
+//                    if (task.isSuccessful()) {
+//                        FirebaseUser user = mAuth.getCurrentUser();
+//                        Toast.makeText(RegisterActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
+//                        Log.d("RegisterActivity", "createUserWithEmail:success");
+//                        updateUI(user);
+//                    } else {
+//                        Log.w("RegisterActivity", "createUserWithEmail:failure", task.getException());
+//                        Toast.makeText(RegisterActivity.this, "Registration Failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+//                        updateUI(null);
+//                    }
+//                });
 
 
     }
 
     public void login(View view) {
 
-        if (usernameEditText.getText().toString().isEmpty()) {
+        if (binding.UserNameEditTextView.getText().toString().isEmpty()) {
             emptyUserDialogBox();
             return;
         }
 
-        if(!isValidEmail(usernameEditText.getText().toString())){
+        if(!isValidEmail(binding.UserNameEditTextView.getText().toString())){
             // if invalid email format, then return
             inValidUserDialogBox();
             return;
 
         }
-        if(passwordEditText.getText().toString().isEmpty()){
+        if(binding.PasswordEditTextView.getText().toString().isEmpty()){
             emptyPasswordDialogBox();
             return;
         }
 
-        if(!isValidPassword(passwordEditText.getText().toString())){
+        if(!isValidPassword(binding.PasswordEditTextView.getText().toString())){
             // if invalid password, then return
 //            Toast.makeText(this, "Please enter a valid password\n" +
 //                    "Password must be at least 4 characters \n" +
@@ -78,22 +94,38 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
+        mAuth = FirebaseAuth.getInstance();
+
+        mAuth.createUserWithEmailAndPassword(binding.UserNameEditTextView.getText().toString(), binding.PasswordEditTextView.getText().toString())
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        Toast.makeText(MainActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
+                        Log.d("RegisterActivity", "createUserWithEmail:success");
+                        //updateUI(user);
+                    } else {
+                        Log.w("RegisterActivity", "createUserWithEmail:failure", task.getException());
+                        Toast.makeText(MainActivity.this, "Registration Failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        //updateUI(null);
+                    }
+                });
+
 
 
 
 
         Intent intent = new Intent(this, HomePage.class);
-        intent.putExtra("username", usernameEditText.getText().toString());
-        intent.putExtra("password", passwordEditText.getText().toString());
+        intent.putExtra("username", binding.UserNameEditTextView.getText().toString());
+        intent.putExtra("password", binding.PasswordEditTextView.getText().toString());
         clearFields(null);
         startActivity(intent);
         Toast.makeText(this, "Login button clicked", Toast.LENGTH_SHORT).show();
-        Log.d(TAG, "Login button clicked, username:" + usernameEditText.getText().toString() + ", password:" + passwordEditText.getText().toString());
+        Log.d(TAG, "Login button clicked, username:" + binding.UserNameEditTextView.getText().toString() + ", password:" + binding.PasswordEditTextView.getText().toString());
     }
 
     public void clearFields(View view) {
-        usernameEditText.setText("");
-        passwordEditText.setText("");
+        binding.UserNameEditTextView.setText("");
+        binding.PasswordEditTextView.setText("");
 
     }
 
@@ -216,6 +248,11 @@ public class MainActivity extends AppCompatActivity {
         // Create and show the dialog
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    public void signUp(View view) {
+        Intent intent = new Intent(this, SignUpPage.class);
+        startActivity(intent);
     }
 
 }
