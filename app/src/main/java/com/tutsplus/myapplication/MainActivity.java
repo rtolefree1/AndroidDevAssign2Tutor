@@ -1,8 +1,11 @@
 package com.tutsplus.myapplication;
 
+import static android.widget.EditText.*;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -22,11 +25,12 @@ import com.tutsplus.myapplication.databinding.ActivityMainBinding;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     ActivityMainBinding binding;
     private static final String TAG = "MainActivity";
     private FirebaseAuth mAuth;
+    private boolean isPasswordVisible = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,34 +40,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         EdgeToEdge.enable(this);
-//        setContentView(R.layout.activity_main);
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.getRoot(), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-//        usernameEditText = findViewById(R.id.UserNameEditTextView);
-//        passwordEditText = findViewById(R.id.PasswordEditTextView);
         binding.loginButtonView.setOnClickListener(this::login);
-//        mAuth = FirebaseAuth.getInstance();
-//
-//        mAuth.createUserWithEmailAndPassword(email, password)
-//                .addOnCompleteListener(this, task -> {
-//                    if (task.isSuccessful()) {
-//                        FirebaseUser user = mAuth.getCurrentUser();
-//                        Toast.makeText(RegisterActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
-//                        Log.d("RegisterActivity", "createUserWithEmail:success");
-//                        updateUI(user);
-//                    } else {
-//                        Log.w("RegisterActivity", "createUserWithEmail:failure", task.getException());
-//                        Toast.makeText(RegisterActivity.this, "Registration Failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
-//                        updateUI(null);
-//                    }
-//                });
-
-
     }
 
     public void login(View view) {
@@ -111,16 +94,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-
-
-
-
-
-//        Intent intent = new Intent(this, HomePage.class);
-//        intent.putExtra("username", binding.UserNameEditTextView.getText().toString());
-//        intent.putExtra("password", binding.PasswordEditTextView.getText().toString());
-//        clearFields(null);
-//        startActivity(intent);
         Toast.makeText(this, "Login button clicked", Toast.LENGTH_SHORT).show();
         Log.d(TAG, "Login button clicked, username:" + binding.UserNameEditTextView.getText().toString() + ", password:" + binding.PasswordEditTextView.getText().toString());
     }
@@ -257,4 +230,15 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @Override
+    public void onClick(View v) {
+        if(isPasswordVisible){
+            binding.PasswordEditTextView.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            isPasswordVisible = false;
+        }else{
+            binding.PasswordEditTextView.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+            isPasswordVisible = true;
+        }
+
+    }
 }

@@ -10,17 +10,6 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="175dp"
-        android:backgroundTint="@color/dark_blue"
-        android:text="@string/register"
-        android:onClick="signUp"
-        />
-
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
@@ -49,13 +38,11 @@
         android:textColor="@color/white"
         />
 
+
     <EditText
         android:id="@+id/UserNameEditTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="50dp"
+        android:layout_width="310dp"
+        android:layout_height="60dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         android:layout_gravity="center"
@@ -76,19 +63,35 @@
         android:textColor="@color/white"
         />
 
-    <EditText
-        android:id="@+id/PasswordEditTextView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="50dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="50dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        android:layout_gravity="center"
-        android:inputType="textPassword"
         android:background="@drawable/rectangle_edit_text"
-        />
+        >
+        <EditText
+            android:id="@+id/PasswordEditTextView"
+            android:layout_width="270dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:inputType="textPassword"
+            android:background="@drawable/rectangle_edit_text_invisible"
+            />
+
+        <ImageView
+            android:id="@+id/togglePasswordView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="onClick"
+            android:src="@drawable/baseline_disabled_visible_24" />
+
+
+    </LinearLayout>
+
+
 
     <Button
         android:id="@+id/loginButtonView"
@@ -99,8 +102,19 @@
         android:layout_marginRight="48sp"
         android:backgroundTint="@color/dark_blue"
         android:drawableLeft="@drawable/sharp_density_small_24"
-
+        android:onClick="login"
         android:text="@string/pixelpro_login" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
+        android:layout_marginStart="75dp"
+        android:layout_marginEnd="75dp"
+        android:backgroundTint="@color/dark_blue"
+        android:onClick="signUp"
+        android:text="@string/register"
+        />
 
 </LinearLayout>
 <!--</androidx.constraintlayout.widget.ConstraintLayout>-->

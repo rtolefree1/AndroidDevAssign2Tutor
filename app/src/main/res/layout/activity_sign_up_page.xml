@@ -20,44 +20,69 @@
       android:textStyle="bold"
       android:textSize="30sp"
       />
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="100dp"
+      android:layout_marginLeft="50dp"
+      android:layout_marginRight="50dp"
+      android:background="@drawable/rectangle_edit_text"
+    >
     <EditText
         android:id="@+id/emailEditView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
         android:gravity="start"
         android:inputType="textEmailAddress"
         android:textColor="@color/white"
         android:textSize="30sp"
         android:hint="@string/email"
+        android:background="@drawable/rectangle_edit_text_invisible"
         android:drawableStart="@drawable/baseline_email_24"
         />
+  </LinearLayout>
 
-  <EditText
-      android:id="@+id/SignUpPasswordView"
+  <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginLeft="50dp"
       android:layout_marginTop="25dp"
       android:layout_marginRight="50dp"
+      android:background="@drawable/rectangle_edit_text"
+    >
+
+  <EditText
+      android:id="@+id/SignUpPasswordView"
+      android:layout_width="250dp"
+      android:layout_height="wrap_content"
       android:drawableStart="@drawable/baseline_lock_24"
       android:gravity="start"
       android:hint="@string/password"
       android:inputType="textPassword"
       android:textColor="@color/black"
-      android:textSize="30sp" />
+      android:textSize="30sp"
+      android:background="@drawable/rectangle_edit_text_invisible"
+      />
 
-    <Button
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/signUpPagePassView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="50dp"
-        android:text="@string/register"
-        android:onClick="signUp"
-        />
+        android:layout_gravity="center"
+        android:layout_marginLeft="15dp"
+        android:onClick="onClickPassword"
+        android:src="@drawable/baseline_disabled_visible_24" />
+  </LinearLayout>
+
+  <Button
+      android:id="@+id/signUpButtonView"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="50dp"
+      android:layout_marginTop="50dp"
+      android:layout_marginEnd="50dp"
+      android:onClick="onClick"
+      android:text="@string/register" />
 
 
 
